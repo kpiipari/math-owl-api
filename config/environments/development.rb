@@ -53,4 +53,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.active_record.time_zone_aware_types = [:datetime, :time]
+  config.debug_exception_response_format = :default
+
 end
