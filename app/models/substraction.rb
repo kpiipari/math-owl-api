@@ -1,4 +1,5 @@
 class Substraction < ApplicationRecord
+    belongs_to :player
     require 'json'
 
     def create_round
