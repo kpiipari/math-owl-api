@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426211816) do
+ActiveRecord::Schema.define(version: 20180426230654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,37 +26,19 @@ ActiveRecord::Schema.define(version: 20180426211816) do
   create_table "additions", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.jsonb    "round1"
-    t.jsonb    "round2"
-    t.jsonb    "round3"
-    t.jsonb    "round4"
-    t.jsonb    "round5"
-    t.jsonb    "round6"
-    t.jsonb    "round7"
-    t.jsonb    "round8"
-    t.jsonb    "round9"
-    t.jsonb    "round10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "player_id"
+    t.jsonb    "rounds"
   end
 
   create_table "multiplies", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.jsonb    "round1"
-    t.jsonb    "round2"
-    t.jsonb    "round3"
-    t.jsonb    "round4"
-    t.jsonb    "round5"
-    t.jsonb    "round6"
-    t.jsonb    "round7"
-    t.jsonb    "round8"
-    t.jsonb    "round9"
-    t.jsonb    "round10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "player_id"
+    t.jsonb    "rounds"
   end
 
   create_table "players", force: :cascade do |t|
@@ -70,19 +52,10 @@ ActiveRecord::Schema.define(version: 20180426211816) do
   create_table "substractions", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.jsonb    "round1"
-    t.jsonb    "round2"
-    t.jsonb    "round3"
-    t.jsonb    "round4"
-    t.jsonb    "round5"
-    t.jsonb    "round6"
-    t.jsonb    "round7"
-    t.jsonb    "round8"
-    t.jsonb    "round9"
-    t.jsonb    "round10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "player_id"
+    t.jsonb    "rounds"
   end
 
 end

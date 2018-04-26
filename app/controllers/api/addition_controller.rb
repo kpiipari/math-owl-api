@@ -8,9 +8,10 @@ class Api::AdditionController < ApplicationController
 
     def create
         game = Addition.new
-        game.round1 = game.create_round
         game.score = 0
         game.time = Time.now
+        game.rounds = game.generate_rounds
+      
         if game.save
             render json: game 
         else
@@ -40,8 +41,7 @@ class Api::AdditionController < ApplicationController
         params.require(:addition_game).permit(:rounds, :score, :time)
     end
 
-    def create_rounds
-        rounds = {}
+    def generate_rounds
         i = 0
 
         while i < 10

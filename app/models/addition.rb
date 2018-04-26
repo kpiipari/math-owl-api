@@ -9,6 +9,20 @@ class Addition < ApplicationRecord
         correct_value = num1 + num2
 
         round = {num1: num1, num2: num2, correct_value: correct_value}
-        return round.to_json
+        return round
+    end
+
+    def generate_rounds
+        rounds = {}
+        i = 1
+
+        while i < 11
+            key = "round" + i.to_s
+            value = create_round
+            rounds[:"#{key}"] = value
+            i = i + 1
+        end
+        
+        return rounds.to_json
     end
 end
