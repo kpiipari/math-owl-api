@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 20180305082204) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "additions", force: :cascade do |t|
+    t.integer  "score"
+    t.time     "time"
+    t.jsonb    "round1"
+    t.jsonb    "round2"
+    t.jsonb    "round3"
+    t.jsonb    "round4"
+    t.jsonb    "round5"
+    t.jsonb    "round6"
+    t.jsonb    "round7"
+    t.jsonb    "round8"
+    t.jsonb    "round9"
+    t.jsonb    "round10"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.integer  "rank"
