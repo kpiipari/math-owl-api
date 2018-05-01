@@ -1,4 +1,6 @@
 class Player < ApplicationRecord
-    has_many :additions, :substractions, :multiplies
+    has_many :additions
+    has_many :substractions
+    has_many :multiplies
 
 end
