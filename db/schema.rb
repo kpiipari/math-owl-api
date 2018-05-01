@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426230654) do
+ActiveRecord::Schema.define(version: 20180501071407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,19 +26,21 @@ ActiveRecord::Schema.define(version: 20180426230654) do
   create_table "additions", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "player_id"
     t.jsonb    "rounds"
+    t.integer  "user_answer"
   end
 
   create_table "multiplies", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "player_id"
     t.jsonb    "rounds"
+    t.integer  "user_answer"
   end
 
   create_table "players", force: :cascade do |t|
@@ -52,10 +54,11 @@ ActiveRecord::Schema.define(version: 20180426230654) do
   create_table "substractions", force: :cascade do |t|
     t.integer  "score"
     t.time     "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "player_id"
     t.jsonb    "rounds"
+    t.integer  "user_answer"
   end
 
 end
