@@ -1,5 +1,6 @@
 class Addition < ApplicationRecord
-    belongs_to :player
+    belongs_to :player, optional: true
+    before_create :set_rounds 
 
     require 'json'
 
@@ -15,7 +16,6 @@ class Addition < ApplicationRecord
     def generate_rounds
         rounds = {}
         i = 1
-
         while i < 11
             key = "round" + i.to_s
             value = create_round
@@ -25,4 +25,11 @@ class Addition < ApplicationRecord
         
         return rounds.to_json
     end
+
+    private
+    
+    def set_rounds
+        self.rounds = generate_rounds
+    end
+
 end
