@@ -1,21 +1,19 @@
 class Api::AdditionController < ApplicationController
 
     before_action :set_game, only: [:show, :edit]
+    
 
     def index
         render json: Addition.all 
     end
 
     def create
-        game = Addition.new
-        game.score = 0
-        game.time = Time.now
-        game.rounds = game.generate_rounds
+        @game = Addition.new
       
-        if game.save
-            render json: game 
+        if @game.save
+            render json: @game 
         else
-            render json: {message: game.errors }, status: 400
+            render json: {message: @game.errors }, status: 400
         end
     end
 
@@ -38,20 +36,7 @@ class Api::AdditionController < ApplicationController
     end
 
     def addition_params
-        params.require(:addition_game).permit(:rounds, :score, :time)
-    end
-
-    def generate_rounds
-        i = 0
-
-        while i < 10
-            key = "round" + i.to_s
-            value = create_round
-            rounds[:"#{key}"] = value
-            i = i + 1
-        end
-        
-        return rounds.to_json
+        params.permit(:user_answer)
     end
 
 end
