@@ -7,6 +7,16 @@ class Api::AdditionController < ApplicationController
         render json: Addition.all 
     end
 
+    def new
+        @game = Addition.new
+        @game.rounds = @game.generate_rounds
+        if @game.save
+            render json: @game 
+        else
+            render json: {message: @game.errors }, status: 400
+        end
+    end
+
     def create
         @game = Addition.new
       
