@@ -5,6 +5,16 @@ class Api::MultiplyController < ApplicationController
         render json: Multiply.all 
     end
 
+    def new
+        @game = Multiply.new
+        @game.rounds = @game.generate_rounds
+        if @game.save
+            render json: @game 
+        else
+            render json: {message: @game.errors }, status: 400
+        end
+    end
+
     def create
         game = Multiply.new
         game.score = 0
