@@ -46,7 +46,17 @@ class Api::AdditionController < ApplicationController
     end
 
     def addition_params
-        params.permit(:rounds)
+        params.require(:addition).params.permit(rounds: [
+            round1: [:player_answer],
+            round2: [:player_answer],
+            round3: [:player_answer],
+            round4: [:player_answer],
+            round5: [:player_answer],
+            round6: [:player_answer],
+            round7: [:player_answer],
+            round8: [:player_answer],
+            round9: [:player_answer],
+            round10: [:player_answer]])
     end
 
 end
