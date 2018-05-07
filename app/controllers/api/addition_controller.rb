@@ -17,8 +17,8 @@ class Api::AdditionController < ApplicationController
         end
     end
 
-    def create
-        @game = Addition.new
+    def test_create
+        @game = Addition.find(params[:id])
       
         if @game.save
             render json: @game 
@@ -46,7 +46,7 @@ class Api::AdditionController < ApplicationController
     end
 
     def addition_params
-        params.permit(:user_answer)
+        params.permit(:rounds)
     end
 
 end
