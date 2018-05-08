@@ -29,14 +29,14 @@ class Addition < ApplicationRecord
     end
 
     def update_player_answer(game)
-        while @@counter < 11
-            key = "round" + @@counter.to_s
-            value = game.user_answer
-            game.rounds["#{key}"]["player_answer"] = value
-            game.save
-            @@counter += 1
+        key = "round" + @@counter.to_s
+        value = game.user_answer
+        game.rounds["#{key}"]["player_answer"] = value
+        game.save
+        @@counter = @@counter + 1
+        if @@counter === 11
+            @@counter = 1
         end
-        return @@counter = 1
     end
 
     private
