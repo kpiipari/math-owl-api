@@ -4,6 +4,9 @@ class Addition < ApplicationRecord
 
     require 'json'
 
+   
+    @@counter = 1
+    
     def create_round
         num1 = rand(0...10)
         num2 = rand(0...10)
@@ -22,8 +25,18 @@ class Addition < ApplicationRecord
             rounds[:"#{key}"] = value
             i = i + 1
         end
-        
-        return rounds.to_json
+        return rounds
+    end
+
+    def update_player_answer(game)
+        while @@counter < 11
+            key = "round" + @@counter.to_s
+            value = game.user_answer
+            game.rounds["#{key}"]["player_answer"] = value
+            game.save
+            @@counter += 1
+        end
+        return @@counter = 1
     end
 
     private
