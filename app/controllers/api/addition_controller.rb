@@ -1,7 +1,8 @@
 class Api::AdditionController < ApplicationController
 
-    before_action :set_game, only: [:show, :edit]
+    before_action :set_game, only: [:show, :create, :update]
     
+    CURRENT_ROUND = 1;
 
     def index
         render json: Addition.all 
@@ -17,9 +18,7 @@ class Api::AdditionController < ApplicationController
         end
     end
 
-    def test_create
-        @game = Addition.find(params[:id])
-      
+    def create
         if @game.save
             render json: @game 
         else
@@ -33,6 +32,8 @@ class Api::AdditionController < ApplicationController
 
     def update
         if @game.update(addition_params)
+            update_player_answer(@game)
+            @game.save
             render json: @game
         else
             render json: { message: @game.errors }, status: 400
@@ -42,21 +43,18 @@ class Api::AdditionController < ApplicationController
     private
 
     def set_game
-        @game = Addition.find_by(id: params[:id])
+        @game = Addition.find(params[:id])
     end
 
     def addition_params
-        params.require(:addition).params.permit(rounds: [
-            round1: [:player_answer],
-            round2: [:player_answer],
-            round3: [:player_answer],
-            round4: [:player_answer],
-            round5: [:player_answer],
-            round6: [:player_answer],
-            round7: [:player_answer],
-            round8: [:player_answer],
-            round9: [:player_answer],
-            round10: [:player_answer]])
+        params.require(:addition).permit(:answer)
+    end
+
+    def update_player_answer(game)
+        round_key = "round#{CURRENT_ROUND}"
+        game.rounds[round_key]["player_answer"] = game.player_answer
+        game.player_answer = ""
+        CURRENT_ROUND + 1
     end
 
 end
