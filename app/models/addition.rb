@@ -6,6 +6,7 @@ class Addition < ApplicationRecord
 
    
     @@counter = 1
+    @@score = 0
     
     def create_round
         num1 = rand(0...10)
@@ -33,9 +34,21 @@ class Addition < ApplicationRecord
         value = game.user_answer
         game.rounds["#{key}"]["player_answer"] = value
         game.save
+        check_answer(game)
         @@counter = @@counter + 1
         if @@counter === 11
             @@counter = 1
+        end
+    end
+
+    def check_answer(game)
+        key = "round" + @@counter.to_s
+        correct_value = game.rounds["#{key}"]["correct_value"]
+        player_answer = game.rounds["#{key}"]["player_answer"]
+        if correct_value === player_answer
+            game.score = @@score + 1
+            @@score = @@score + 1
+            game.save
         end
     end
 
