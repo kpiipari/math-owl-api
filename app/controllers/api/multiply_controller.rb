@@ -33,21 +33,25 @@ class Api::MultiplyController < ApplicationController
     end
 
     def update
-        if @game.update(multiply_params)
-            render json: @game
+        game = Multiply.find(params[:id])
+        if game.update(multiply_params)
+            game.save
+            game.update_player_answer(game)
+            render json: game
         else
-            render json: { message: @game.errors }, status: 400
+            render json: { message: game.errors }, status: 400
         end
+        
     end
 
     private
 
     def set_game
-        @game = Multiply.find_by(id: params[:id])
+        @game = Multiply.find(params[:id])
     end
 
     def multiply_params
-        params.require(:multiply_game).permit(:rounds, :score, :time)
+        params.require(:multiply).permit(:user_answer)
     end
 
 end

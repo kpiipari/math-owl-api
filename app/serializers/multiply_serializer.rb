@@ -1,3 +1,3 @@
 class MultiplySerializer < ActiveModel::Serializer
-  aattributes :id, :rounds, :score, :time, :user_answer
+  attributes :id, :rounds, :score, :time, :user_answer
 end

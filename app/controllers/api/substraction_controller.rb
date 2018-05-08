@@ -33,21 +33,25 @@ class Api::SubstractionController < ApplicationController
     end
 
     def update
-        if @game.update(substraction_params)
-            render json: @game
+        game = Substraction.find(params[:id])
+        if game.update(subtraction_params)
+            game.save
+            game.update_player_answer(game)
+            render json: game
         else
-            render json: { message: @game.errors }, status: 400
+            render json: { message: game.errors }, status: 400
         end
+        
     end
 
     private
 
     def set_game
-        @game = Substraction.find_by(id: params[:id])
+        @game = Substraction.find(params[:id])
     end
 
-    def substraction_params
-        params.require(:substraction_game).permit(:rounds, :score, :time)
+    def subtraction_params
+        params.require(:substraction).permit(:user_answer)
     end
 
 end
