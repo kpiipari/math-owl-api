@@ -16,15 +16,10 @@ class Api::SubstractionController < ApplicationController
     end
 
     def create
-        game = Substraction.new
-        game.score = 0
-        game.time = Time.now
-        game.rounds = game.generate_rounds
-      
-        if game.save
-            render json: game 
+        if @game.save
+            render json: @game 
         else
-            render json: {message: game.errors }, status: 400
+            render json: {message: @game.errors }, status: 400
         end
     end
 
@@ -51,7 +46,7 @@ class Api::SubstractionController < ApplicationController
     end
 
     def subtraction_params
-        params.require(:substraction).permit(:user_answer)
+        params.require(:substraction).permit(:user_answer, :player_id)
     end
 
 end

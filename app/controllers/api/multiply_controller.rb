@@ -1,5 +1,5 @@
 class Api::MultiplyController < ApplicationController
-    before_action :set_game, only: [:show, :edit]
+    before_action :set_game, only: [:show, :update]
 
     def index
         render json: Multiply.all 
@@ -16,15 +16,10 @@ class Api::MultiplyController < ApplicationController
     end
 
     def create
-        game = Multiply.new
-        game.score = 0
-        game.time = Time.now
-        game.rounds = game.generate_rounds
-      
-        if game.save
-            render json: game 
+        if @game.save
+            render json: @game 
         else
-            render json: {message: game.errors }, status: 400
+            render json: {message: @game.errors }, status: 400
         end
     end
 
@@ -51,7 +46,7 @@ class Api::MultiplyController < ApplicationController
     end
 
     def multiply_params
-        params.require(:multiply).permit(:user_answer)
+        params.require(:multiply).permit(:user_answer, :player_id)
     end
 
 end

@@ -30,7 +30,7 @@ class Multiply < ApplicationRecord
         return rounds
     end
 
-     def update_player_answer(game)
+    def update_player_answer(game)
         puts @@counter
         puts @@score
         key = "round" + @@counter.to_s

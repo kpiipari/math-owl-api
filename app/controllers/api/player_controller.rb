@@ -1,6 +1,6 @@
 class Api::PlayerController < ApplicationController
 
-    before_action :set_player, only: [:show, :update]
+    before_action :set_player, only: [:show]
 
     def show 
         render json: @player
@@ -14,6 +14,18 @@ class Api::PlayerController < ApplicationController
             render json: {message: @player.errors }, status: 400
         end
     end
+
+    def update
+        player = Player.find(params[:id])
+        if player.update(player_params)
+            player.save
+            player.hello(player.name)
+            render json: player
+        else
+            render json: { message: player.errors }, status: 400
+        end
+    end
+
 
     private
 
