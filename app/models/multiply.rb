@@ -29,16 +29,17 @@ class Multiply < ApplicationRecord
         
         return rounds
     end
-    def update_player_answer(game)
+
+     def update_player_answer(game)
+        puts @@counter
+        puts @@score
         key = "round" + @@counter.to_s
         value = game.user_answer
         game.rounds["#{key}"]["player_answer"] = value
         game.save
         check_answer(game)
-        @@counter = @@counter + 1
-        if @@counter === 11
-            @@counter = 1
-        end
+        puts @@counter
+        puts @@score
     end
 
     def check_answer(game)
@@ -47,13 +48,31 @@ class Multiply < ApplicationRecord
         player_answer = game.rounds["#{key}"]["player_answer"]
         if correct_value === player_answer
             game.score = @@score + 1
-            @@score = @@score + 1
             game.save
+            @@score = @@score + 1
         end
+        @@counter = @@counter + 1
+        reset_score()
+        reset_counter()
     end
+
 
     private
     
+    def reset_score
+        if @@score === 10 
+            @@score = 0
+        elsif @@counter === 11
+            @@score = 0
+        end
+    end
+
+    def reset_counter
+        if @@counter === 11
+            @@counter = 1
+        end
+    end
+
     def set_rounds
         self.rounds = generate_rounds
     end
