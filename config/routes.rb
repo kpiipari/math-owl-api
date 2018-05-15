@@ -15,5 +15,6 @@ Rails.application.routes.draw do
         get "new"
       end
     end
+    resources :player
   end
 end

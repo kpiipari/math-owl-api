@@ -4,7 +4,6 @@ class Multiply < ApplicationRecord
 
     require 'json'
 
-   
     @@counter = 1
     @@score = 0
 

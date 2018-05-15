@@ -48,7 +48,7 @@ class Api::AdditionController < ApplicationController
     end
 
     def addition_params
-        params.require(:addition).permit(:user_answer)
+        params.require(:addition).permit(:user_answer, :player_id)
     end
 
     
