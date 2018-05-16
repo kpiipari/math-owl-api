@@ -1,5 +1,5 @@
 class Api::MultiplyController < ApplicationController
-    before_action :set_game, only: [:show, :update]
+    before_action :set_game, only: [:show, :edit]
 
     def index
         render json: Multiply.all 
