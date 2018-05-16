@@ -1,5 +1,4 @@
 class Api::AdditionController < ApplicationController
-
     before_action :set_game, only: [:show, :edit]
     
 
@@ -34,13 +33,11 @@ class Api::AdditionController < ApplicationController
         if game.update(addition_params)
             game.save
             game.update_player_answer(game)
-            total_score = game.get_total_score(game)
-            puts total_score
+            game.get_total_score(game)
             render json: game
         else
             render json: { message: game.errors }, status: 400
-        end
-        
+        end 
     end
 
     private

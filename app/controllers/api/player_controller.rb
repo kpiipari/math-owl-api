@@ -19,7 +19,6 @@ class Api::PlayerController < ApplicationController
         player = Player.find(params[:id])
         if player.update(player_params)
             player.save
-            player.hello(player.name)
             render json: player
         else
             render json: { message: player.errors }, status: 400

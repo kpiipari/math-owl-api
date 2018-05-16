@@ -1,7 +1,6 @@
 class Addition < ApplicationRecord
-    include GameExtension
     belongs_to :player, optional: true
-    before_create :set_rounds 
+    #before_create :set_rounds 
 
     require 'json'
     
@@ -26,5 +25,7 @@ class Addition < ApplicationRecord
         end
         return rounds
     end
+
+    
 
 end

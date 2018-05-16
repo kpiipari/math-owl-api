@@ -4,13 +4,7 @@ module GameExtension
     @@counter = 1
     @@score = 0
 
-    def update_player_answer(game)
-        key = "round" + @@counter.to_s
-        value = game.user_answer
-        game.rounds["#{key}"]["player_answer"] = value
-        game.save
-        check_answer(game)
-    end
+    
 
     def check_answer(game)
         key = "round" + @@counter.to_s
@@ -26,10 +20,19 @@ module GameExtension
         reset_counter()
     end
 
+    def update_player_answer(game)
+        key = "round" + @@counter.to_s
+        value = game.user_answer
+        game.rounds["#{key}"]["player_answer"] = value
+        game.save
+        check_answer(game)
+    end
+
     def get_total_score(game)
         if game.player_id != nil
             player = Player.find(game.player_id)
-            player.total_score = total_score(player)
+            ts = total_score(player)
+            player.total_score = ts
             player.save
         end
     end

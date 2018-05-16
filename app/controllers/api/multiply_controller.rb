@@ -29,9 +29,10 @@ class Api::MultiplyController < ApplicationController
 
     def update
         game = Multiply.find(params[:id])
-        if game.update(multiply_params)
+        if game.update(addition_params)
             game.save
             game.update_player_answer(game)
+            game.get_total_score(game)
             render json: game
         else
             render json: { message: game.errors }, status: 400

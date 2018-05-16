@@ -1,5 +1,4 @@
 class Substraction < ApplicationRecord
-    include GameExtension
     belongs_to :player, optional: true
     before_create :set_rounds 
 

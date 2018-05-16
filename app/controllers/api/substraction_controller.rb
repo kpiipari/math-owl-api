@@ -29,9 +29,10 @@ class Api::SubstractionController < ApplicationController
 
     def update
         game = Substraction.find(params[:id])
-        if game.update(subtraction_params)
+        if game.update(addition_params)
             game.save
             game.update_player_answer(game)
+            game.get_total_score(game)
             render json: game
         else
             render json: { message: game.errors }, status: 400
