@@ -65,6 +65,7 @@ class Addition < ApplicationRecord
     private
 
     def total_score(player)
+        puts total_score
         addition_games = 0
         subtraction_games = 0
         multiply_games = 0 
@@ -78,6 +79,7 @@ class Addition < ApplicationRecord
             multiply_games = player.multiplies.reduce(0) { |sum, game| sum + game.score}
         end 
         total_score = addition_games + subtraction_games + multiply_games
+        puts total_score
         return total_score
     end
     
