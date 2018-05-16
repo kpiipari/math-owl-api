@@ -1,9 +1,18 @@
 class Api::PlayerController < ApplicationController
 
-    before_action :set_player, only: [:show]
+    def index
+        players = Player.all 
+        render json: players
+    end
 
     def show 
-        render json: @player
+        player = Player.find(params[:id])
+        puts player.name
+        puts player.total_score
+        player.total_score = player.get_score(player)
+        player.save
+        puts player.total_score
+        render json: player
     end
 
     def create
@@ -26,7 +35,7 @@ class Api::PlayerController < ApplicationController
         end
     end
 
-
+    
     private
 
     def set_player
