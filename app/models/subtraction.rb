@@ -1,4 +1,4 @@
-class Substraction < ApplicationRecord
+class Subtraction < ApplicationRecord
     belongs_to :player, optional: true
     before_create :set_rounds 
 

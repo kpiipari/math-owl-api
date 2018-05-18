@@ -1,13 +1,13 @@
 class Player < ApplicationRecord
     has_many :additions
-    has_many :substractions
+    has_many :subtractions
     has_many :multiplies
 
    
     def get_score(player)
         player = player
         puts player.additions
-        puts player.substractions
+        puts player.subtractions
         puts player.multiplies
         addition_games = 0
         subtraction_games = 0
@@ -15,8 +15,8 @@ class Player < ApplicationRecord
         if player.additions.length > 0
             addition_games = player.additions.reduce(0) { |sum, game| sum + game.score}
         end
-        if player.substractions.length > 0
-            subtraction_games = player.substractions.reduce(0) { |sum, game| sum + game.score}
+        if player.subtractions.length > 0
+            subtraction_games = player.subtractions.reduce(0) { |sum, game| sum + game.score}
         end
         if player.multiplies.length > 0
             multiply_games = player.multiplies.reduce(0) { |sum, game| sum + game.score}

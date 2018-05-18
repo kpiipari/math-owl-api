@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         get "new"
       end
     end
-    resources :substraction do
+    resources :subtraction do
       collection do
         get "new"
       end

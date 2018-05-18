@@ -1,12 +1,12 @@
-class Api::SubstractionController < ApplicationController
+class Api::SubtractionController < ApplicationController
     before_action :set_game, only: [:show, :edit]
 
     def index
-        render json: Substraction.all 
+        render json: Subtraction.all 
     end
 
     def new
-        @game = Substraction.new
+        @game = Subtraction.new
         @game.rounds = @game.generate_rounds
         if @game.save
             render json: @game 
@@ -28,7 +28,7 @@ class Api::SubstractionController < ApplicationController
     end
 
     def update
-        game = Substraction.find(params[:id])
+        game = Subtraction.find(params[:id])
         if game.update(subtraction_params)
             game.save
             if subtraction_params.has_key?(:user_answer)
@@ -43,11 +43,11 @@ class Api::SubstractionController < ApplicationController
     private
 
     def set_game
-        @game = Substraction.find(params[:id])
+        @game = Subtraction.find(params[:id])
     end
 
     def subtraction_params
-        params.require(:substraction).permit(:user_answer, :player_id)
+        params.require(:subtraction).permit(:user_answer, :player_id)
     end
 
 end
