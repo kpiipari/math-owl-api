@@ -31,12 +31,13 @@ class Api::MultiplyController < ApplicationController
         game = Multiply.find(params[:id])
         if game.update(multiply_params)
             game.save
-            game.update_player_answer(game)
+            if multiply_params.has_key?(:user_answer)
+                game.update_player_answer(game)
+            end
             render json: game
         else
             render json: { message: game.errors }, status: 400
         end
-        
     end
 
     private

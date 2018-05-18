@@ -33,13 +33,13 @@ class Api::AdditionController < ApplicationController
         game = Addition.find(params[:id])
         if game.update(addition_params)
             game.save
-            game.update_player_answer(game)
-            #game.get_total_score(game)
+            if addition_params.has_key?(:user_answer)
+                game.update_player_answer(game)
+            end
             render json: game
         else
             render json: { message: game.errors }, status: 400
         end
-        
     end
 
     private

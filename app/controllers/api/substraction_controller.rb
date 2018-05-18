@@ -31,12 +31,13 @@ class Api::SubstractionController < ApplicationController
         game = Substraction.find(params[:id])
         if game.update(subtraction_params)
             game.save
-            game.update_player_answer(game)
+            if subtraction_params.has_key?(:user_answer)
+                game.update_player_answer(game)
+            end
             render json: game
         else
             render json: { message: game.errors }, status: 400
         end
-        
     end
 
     private
