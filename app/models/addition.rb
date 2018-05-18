@@ -54,13 +54,13 @@ class Addition < ApplicationRecord
         reset_counter()
     end
 
-    def get_total_score(game)
-        if game.player_id != nil
-            player = Player.find(game.player_id)
-            player.total_score = total_score(player)
-            player.save
-        end
-    end
+    #def get_total_score(game)
+    #    if game.player_id != nil
+    #        player = Player.find(game.player_id)
+    #        player.total_score = total_score(player)
+    #        player.save
+    #    end
+    #end
 
     private
 

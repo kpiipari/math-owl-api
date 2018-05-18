@@ -25,8 +25,4 @@ class Player < ApplicationRecord
         return total_score
     end
 
-    def rank(players)
-
-    end
-
 end

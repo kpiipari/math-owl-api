@@ -34,7 +34,7 @@ class Api::AdditionController < ApplicationController
         if game.update(addition_params)
             game.save
             game.update_player_answer(game)
-            game.get_total_score(game)
+            #game.get_total_score(game)
             render json: game
         else
             render json: { message: game.errors }, status: 400
