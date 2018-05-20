@@ -7,8 +7,6 @@ class Api::PlayerController < ApplicationController
 
     def show 
         player = Player.find(params[:id])
-        puts player.name
-        puts player.total_score
         player.total_score = player.get_score(player)
         player.save
         puts player.total_score

@@ -3,6 +3,7 @@ class Player < ApplicationRecord
     has_many :subtractions
     has_many :multiplies
 
+    scope :rank, -> { where.not(total_score: nil).order('total_score DESC') }
    
     def get_score(player)
         player = player
@@ -24,5 +25,5 @@ class Player < ApplicationRecord
         total_score = addition_games + subtraction_games + multiply_games
         return total_score
     end
-
+    
 end
