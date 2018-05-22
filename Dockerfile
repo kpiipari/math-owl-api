@@ -6,4 +6,6 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
-CMD ./myapp
+ENV PORT=3001
+
+CMD bundle exec rails s -p $PORT -b '0.0.0.0'
